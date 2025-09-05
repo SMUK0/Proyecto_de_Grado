@@ -83,11 +83,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
  
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "consultorio",
+        "USER": "postgres",
+        "PASSWORD": "",        # en tu caso, vacío
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
+
  
  
 # Password validation
@@ -143,10 +148,10 @@ CORS_ALLOWED_ORIGINS = [
 # Django REST Framework basic config  ### AÑADIDO
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+       
     ],
 }
